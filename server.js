@@ -6,7 +6,14 @@ var app = express();
 var cluster = require('cluster');
 var os = require('os');
 
-var runAsCluster = true;
+var runAsCluster;
+
+if (process.env.RUN_AS_CLUSTER === undefined) {
+    runAsCluster = true;
+}
+else {
+    runAsCluster = process.env.RUN_AS_CLUSTER;
+}
 
 function main() {
     var rounds = 10;
